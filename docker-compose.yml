@@ -22,7 +22,7 @@ services:
       context: .
     image: "io.unikube.io/polls"
     ports:
-      - "8080:8080"
+      - "8080:8282"
     depends_on:
       - db
     environment:
@@ -31,3 +31,4 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_DATABASE: polls
       POSTGRES_PASSWORD: polls
+      APPLICATION_PORT: 8282
