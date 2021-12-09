@@ -1,0 +1,33 @@
+version: '3.4'
+
+volumes:
+  postgres:  # persistent external volume for database data
+    external: true
+
+services:
+  db:
+    image: postgres:11-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: polls
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: polls
+      POSTGRES_PASSWORD: polls
+      PGDATA: "/postgres/pgdata"
+    volumes:
+      - postgres:/postgres
+  polls:
+    build:
+      context: .
+    image: "io.unikube.io/polls"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: polls
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: polls
+      POSTGRES_PASSWORD: polls
