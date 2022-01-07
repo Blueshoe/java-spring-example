@@ -1,0 +1,12 @@
+# unikube switch configuration file
+apps:
+  projects:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    deployment: polls
+    # specify the command to start the container with
+    command: java -jar /app/polls-0.0.2-SNAPSHOT.jar
+    volumes:
+      - ./polls:/app

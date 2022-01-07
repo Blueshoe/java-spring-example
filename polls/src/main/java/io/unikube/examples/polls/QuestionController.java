@@ -13,6 +13,12 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
+    @GetMapping(value = "/")
+    @ApiOperation(value = "Welcome Page")
+    public String welcome() {
+        return "Welcome to the 'Polls' REST API booya! See the <a href=\"/swagger-ui/\">api documentation</a>";
+    }
+
     @GetMapping(value = "/questions")
     @ApiOperation(value = "list all questions")
     public Iterable<Question> listQuestions(@RequestParam Map<String, String> queryParameters) {

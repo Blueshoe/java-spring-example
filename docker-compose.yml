@@ -20,11 +20,14 @@ services:
   polls:
     build:
       context: .
+      target: dev
     image: "io.unikube.io/polls"
     ports:
       - "8080:8282"
     depends_on:
       - db
+    volumes:
+      - ./polls:/app
     environment:
       POSTGRES_HOST: db
       POSTGRES_USER: polls
