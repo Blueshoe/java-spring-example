@@ -9,7 +9,8 @@ import io.swagger.annotations.ApiModelProperty;
 @Table()
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
     @Column
